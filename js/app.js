@@ -1,13 +1,36 @@
-let div = document.createElement("div");
-div.style.cssText = "border:2px solid red";
 
-let h1 = document.createElement("h1");
-let img = document.createElement("img");
+async function fetchData(){
+    let loading = false;
+    try{
+        loading = true;
+        let response = await fetch("https://www.themealdb.com/api/json/v1/1/categories.php");
+        if(response.ok){
+            let data = await response.json();
+            displayResult(data);
+           
+        }
+    }catch(error){
+        console.error(error);
+    }finally{
+        loading = false;
+    }
+  
+}
 
-h1.innerHTML = "Hello World";
-img.src = "https://img.freepik.com/free-vector/hand-coding-concept-illustration_114360-8113.jpg?t=st=1719540696~exp=1719544296~hmac=93a4babbc52e3a31d0e7e7eeb3777d8e7f71ca71bea18bbdcc6dc6d5e08fb46f&w=1060";
+function displayResult(data){
+    data.categories.forEach((m) => {
+        let mealsContainer = document.getElementById("mealsContainer");
+        let div = document.createElement("div");
+        let h2 = document.createElement("h2");
+        h2.innerHTML = m.strCategory;
+        let img = document.createElement("img");
+        img.src = m.strCategoryThumb;
 
-div.appendChild(img);
-div.appendChild(h1);
+        div.appendChild(img);
+        div.appendChild(h2);
 
-document.body.appendChild(div);
+        mealsContainer.appendChild(div);
+    });
+}
+
+fetchData();
