@@ -1,10 +1,18 @@
-let heading = document.getElementById("heading");
-// donkey.style.color = "red";
-// donkey.style.textDecoration = "underline";
-// donkey.style.backgroundColor = "yellow";
-heading.style.cssText = "color:red;text-decoration:underline;background-color:yellow";
-heading.innerHTML = "Hello World";
+//Create div element with styles
+let div = document.createElement("div");
+div.style.cssText = "border:2px solid black;width:300px";
 
+// Create H1 element with content
+let h1 = document.createElement("h1");
+h1.innerHTML = "Hello World";
+
+// Create p Element with content
 let p = document.createElement("p");
-p.innerHTML = " Lorem ipsum dolor sit amet consectetur adipisicing elit. Eos sint necessitatibus ipsum magnam non nam, reprehenderit quam cupiditate minima saepe facilis sapiente totam ducimus aspernatur earum voluptas, commodi fuga inventore."
-document.body.appendChild(p);
+p.innerHTML = "I love coding. do you?";
+
+//Add h1 and p to div
+div.appendChild(h1);
+div.appendChild(p);
+
+//Add div to body
+document.body.appendChild(div);
